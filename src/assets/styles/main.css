@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:       #0f0f18;
+  --surface:  #17172a;
+  --surface2: #1e1e35;
+  --accent:   #7c6ff7;
+  --accent2:  #f7c06f;
+  --accent3:  #6ff7c0;
+  --muted:    #8888aa;
+  --border:   rgba(124,111,247,0.2);
+  --glow:     rgba(124,111,247,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: #f0f0ff;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* Transitions de vue */
+.page-enter-active, .page-leave-active { transition: opacity 0.35s ease, transform 0.35s ease; }
+.page-enter-from { opacity: 0; transform: translateY(16px); }
+.page-leave-to  { opacity: 0; transform: translateY(-8px); }
+
+/* Utilitaires custom */
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-dm font-medium text-sm transition-all duration-200 cursor-pointer;
+  }
+  .btn-primary {
+    @apply bg-accent text-white shadow-[0_0_30px_rgba(124,111,247,0.4)]
+           hover:bg-[#9488f9] hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(124,111,247,0.6)];
+  }
+  .btn-outline {
+    @apply border border-[var(--border)] text-muted
+           hover:border-accent hover:text-white hover:bg-[var(--glow)];
+  }
+  .btn-danger {
+    @apply bg-red-500/10 border border-red-500/30 text-red-400
+           hover:bg-red-500/20 hover:border-red-500;
+  }
+  .card {
+    @apply bg-surface border border-[var(--border)] rounded-2xl
+           transition-all duration-300 hover:border-accent;
+  }
+  .section-label {
+    @apply text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-2 block;
+  }
+  .section-title {
+    @apply font-syne font-extrabold text-4xl leading-tight tracking-tight mb-3;
+  }
+  .section-sub {
+    @apply text-muted font-light leading-relaxed mb-12 max-w-xl;
+  }
+  .input {
+    @apply w-full bg-surface border border-[var(--border)] rounded-xl px-4 py-3
+           text-sm text-white placeholder-muted outline-none
+           focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all;
+  }
+  .tag {
+    @apply text-xs font-semibold px-3 py-1 rounded-full border;
+  }
+}
