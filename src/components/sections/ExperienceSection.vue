@@ -4,69 +4,115 @@
     <h2 class="section-title">Expérience &amp; Formation</h2>
     <p class="section-sub">Mon parcours professionnel et académique.</p>
 
-    <div v-if="store.loading" class="space-y-6">
-      <div v-for="n in 4" :key="n" class="flex gap-6 animate-pulse">
-        <div class="w-12 flex justify-center pt-1"><div class="w-3 h-3 rounded-full bg-white/10" /></div>
-        <div class="card flex-1 p-6"><div class="h-3 w-24 bg-white/10 rounded mb-3"/><div class="h-5 w-48 bg-white/10 rounded mb-2"/><div class="h-3 w-32 bg-white/10 rounded"/></div>
+    <!-- Skeleton -->
+    <div v-if="store.loading" class="grid md:grid-cols-3 gap-8">
+      <div v-for="col in 3" :key="col" class="space-y-4">
+        <div v-for="n in 2" :key="n" class="card p-6 animate-pulse">
+          <div class="h-3 w-24 bg-white/10 rounded mb-3"/>
+          <div class="h-5 w-48 bg-white/10 rounded mb-2"/>
+          <div class="h-3 w-32 bg-white/10 rounded"/>
+        </div>
       </div>
     </div>
 
-    <div v-else class="relative">
-      <!-- Timeline line -->
-      <div class="absolute left-5 top-2 bottom-0 w-px bg-gradient-to-b from-accent to-transparent" />
+    <div v-else class="grid md:grid-cols-3 gap-8">
 
-      <div v-for="(exp, i) in store.experiences" :key="exp._id"
-           class="flex gap-6 mb-10 opacity-0 translate-x-[-16px] transition-all duration-500"
-           :ref="el => observeItem(el, i)">
-        <div class="flex justify-center pt-1 w-10 shrink-0">
-          <div class="w-3 h-3 rounded-full relative z-10 shadow-[0_0_10px]"
-               :class="dotColor(exp.type)" />
+      <!-- Colonne Formation -->
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <svg class="w-4 h-4 text-accent3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 14l9-5-9-5-9 5 9 5zm0 7V9m-7 4l7 8 7-8"/>
+          </svg>
+          <h3 class="font-syne font-bold text-sm tracking-widest uppercase text-accent3">Formation</h3>
         </div>
-        <div class="card flex-1 p-6">
-          <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
-            {{ exp.startDate }} {{ exp.endDate && exp.endDate !== exp.startDate ? '– ' + exp.endDate : '' }}
+        <div class="space-y-4">
+          <div v-for="(exp, i) in education" :key="exp._id"
+               class="card p-5 opacity-0 translate-y-4 transition-all duration-500"
+               :ref="el => observeItem(el, i)">
+            <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
+              {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+            </div>
+            <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
+            <div class="text-accent3 text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
+            <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
           </div>
-          <h3 class="font-syne font-bold text-base mb-1">{{ exp.title }}</h3>
-          <div class="text-accent3 text-sm mb-3">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
-          <p v-if="exp.description" class="text-muted text-sm leading-relaxed">{{ exp.description }}</p>
-          <span class="inline-block mt-3 text-xs font-semibold px-2 py-0.5 rounded-full"
-                :class="typeTag(exp.type)">
-            {{ typeLabel(exp.type) }}
-          </span>
+          <p v-if="!education.length" class="text-muted text-xs">Aucune formation renseignée.</p>
         </div>
       </div>
+
+      <!-- Colonne Professionnel -->
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <h3 class="font-syne font-bold text-sm tracking-widest uppercase text-accent">Professionnel</h3>
+        </div>
+        <div class="space-y-4">
+          <div v-for="(exp, i) in professional" :key="exp._id"
+               class="card p-5 opacity-0 translate-y-4 transition-all duration-500"
+               :ref="el => observeItem(el, i)">
+            <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
+              {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+            </div>
+            <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
+            <div class="text-accent text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
+            <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+          </div>
+          <p v-if="!professional.length" class="text-muted text-xs">Aucune expérience renseignée.</p>
+        </div>
+      </div>
+
+      <!-- Colonne Associatif -->
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <svg class="w-4 h-4 text-accent2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <h3 class="font-syne font-bold text-sm tracking-widest uppercase text-accent2">Associatif</h3>
+        </div>
+        <div class="space-y-4">
+          <div v-for="(exp, i) in association" :key="exp._id"
+               class="card p-5 opacity-0 translate-y-4 transition-all duration-500"
+               :ref="el => observeItem(el, i)">
+            <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
+              {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+            </div>
+            <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
+            <div class="text-accent2 text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
+            <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+          </div>
+          <p v-if="!association.length" class="text-muted text-xs">Aucune activité renseignée.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { usePortfolioStore } from '@/stores/portfolioStore'
 
 const store = usePortfolioStore()
 onMounted(() => { if (!store.experiences.length) store.fetchExperiences() })
 
-const dotColor = (type) => ({
-  professional: 'bg-accent    shadow-accent',
-  education:    'bg-accent3   shadow-accent3',
-  association:  'bg-accent2   shadow-accent2',
-}[type] || 'bg-accent shadow-accent')
+const sortDesc = (arr) => [...arr].sort((a, b) => {
+  const year = (s) => parseInt(s?.match(/\d{4}/)?.[0] || '0')
+  return year(b.startDate) - year(a.startDate)
+})
 
-const typeLabel = (type) => ({ professional: 'Professionnel', education: 'Formation', association: 'Associatif' }[type] || type)
-const typeTag   = (type) => ({
-  professional: 'bg-accent/10   text-accent',
-  education:    'bg-accent3/10  text-accent3',
-  association:  'bg-accent2/10  text-accent2',
-}[type] || 'bg-accent/10 text-accent')
+const education    = computed(() => sortDesc(store.experiences.filter(e => e.type === 'education')))
+const professional = computed(() => sortDesc(store.experiences.filter(e => e.type === 'professional')))
+const association  = computed(() => sortDesc(store.experiences.filter(e => e.type === 'association')))
 
-// Intersection Observer pour animer les items
 const observeItem = (el, i) => {
   if (!el) return
   const obs = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
       setTimeout(() => {
-        el.classList.remove('opacity-0', 'translate-x-[-16px]')
-        el.classList.add('opacity-100', 'translate-x-0')
+        el.classList.remove('opacity-0', 'translate-y-4')
+        el.classList.add('opacity-100', 'translate-y-0')
       }, i * 100)
       obs.disconnect()
     }

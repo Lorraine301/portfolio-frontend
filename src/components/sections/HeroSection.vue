@@ -52,7 +52,7 @@
           FST TANGER
           <span class="block text-muted text-[10px] font-normal mt-0.5">Cycle Ingénieur</span>
         </div>
-        <div class="badge-top">🇲🇬 Tanger</div>
+        <div class="badge-top">🇲🇦 Tanger</div>
       </div>
     </div>
   </section>
