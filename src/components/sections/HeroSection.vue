@@ -71,7 +71,7 @@ const photoUrl = '/photo.png'
 import { onMounted, ref } from 'vue'
 
 const typedText  = ref('')
-const titles = ['IA & Data Engineering', 'Développement Logiciel', 'Systèmes Intelligents']
+const titles = ['Développement Logiciel et Systèmes Intelligents']
 let titleIndex = 0, charIndex = 0, deleting = false
 
 onMounted(() => {
