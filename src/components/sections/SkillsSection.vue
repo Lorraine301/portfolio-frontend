@@ -15,8 +15,10 @@
     </div>
 
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div v-for="skill in store.skills" :key="skill._id"
-           class="card p-6 hover:-translate-y-1 transition-transform">
+      <div v-for="(skill, i) in store.skills" :key="skill._id"
+          class="card p-6 hover:-translate-y-1 transition-transform reveal"
+          :style="`transition-delay: ${i * 80}ms`"
+          :ref="el => observeReveal(el)">
         <div class="w-11 h-11 rounded-xl flex items-center justify-center text-xl mb-4"
              :class="`bg-${colorMap[skill.color] || 'accent'}/10`">
           {{ skill.icon }}
@@ -48,6 +50,13 @@ const colorMap = {
   pink:   'pink-400',
   blue:   'blue-400',
   coral:  'orange-400',
+}
+const observeReveal = (el) => {
+  if (!el) return
+  const obs = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) { el.classList.add('revealed'); obs.disconnect() }
+  }, { threshold: 0.1 })
+  obs.observe(el)
 }
 
 const tagClass = (color) => ({

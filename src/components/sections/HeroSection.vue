@@ -19,10 +19,10 @@
         <span class="text-accent">Lorraine Agnès</span><br>
         <span class="text-muted font-bold">RAHELIARISOA</span>
       </h1>
-
       <p class="text-muted font-light leading-relaxed mb-8 max-w-md animate-fade-up" style="animation-delay:.2s">
-        Étudiante Ingénieure en Informatique — IA, Data Engineering &amp; Développement Logiciel.
+         Étudiante Ingénieure en Informatique — IA, Data Engineering &amp; Développement Logiciel.
         Passionnée par la tech qui change le monde.
+      <span class="text-accent font-medium">{{ typedText }}<span class="animate-pulse">|</span></span>
       </p>
 
       <div class="flex gap-4 flex-wrap animate-fade-up" style="animation-delay:.3s">
@@ -48,11 +48,11 @@
             <p class="text-sm opacity-60">Ajoutez votre photo<br><span class="text-xs">dans le dossier public/</span></p>
           </div>
         </div>
-        <div class="badge-bottom">
+        <div class="badge-bottom float">
           FST TANGER
           <span class="block text-muted text-[10px] font-normal mt-0.5">Cycle Ingénieur</span>
         </div>
-        <div class="badge-top">🇲🇦 Tanger</div>
+        <div class="badge-top float-delay">🇲🇦 Tanger</div>
       </div>
     </div>
   </section>
@@ -63,6 +63,26 @@
 // et décommentez la ligne ci-dessous :
 // const photoUrl = '/photo.jpg'
 const photoUrl = '/photo.png'
+import { onMounted, ref } from 'vue'
+
+const typedText  = ref('')
+const titles = ['IA & Data Engineering', 'Développement Logiciel', 'Systèmes Intelligents']
+let titleIndex = 0, charIndex = 0, deleting = false
+
+onMounted(() => {
+  const type = () => {
+    const current = titles[titleIndex]
+    if (!deleting) {
+      typedText.value = current.slice(0, ++charIndex)
+      if (charIndex === current.length) { deleting = true; setTimeout(type, 1800); return }
+    } else {
+      typedText.value = current.slice(0, --charIndex)
+      if (charIndex === 0) { deleting = false; titleIndex = (titleIndex + 1) % titles.length }
+    }
+    setTimeout(type, deleting ? 40 : 80)
+  }
+  setTimeout(type, 1000)
+})
 </script>
 
 <style scoped>

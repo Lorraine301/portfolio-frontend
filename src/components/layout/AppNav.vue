@@ -1,6 +1,10 @@
 <template>
   <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-4"
        :class="scrolled ? 'nav-scrolled' : 'nav-top'">
+
+       <!-- Barre de progression de lecture -->
+    <div class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-accent via-accent3 to-accent2 z-[60] transition-all duration-100"
+     :style="`width: ${scrollProgress}%`" />
     <router-link to="/" class="font-syne font-extrabold text-lg text-accent tracking-tight">LARA.</router-link>
 
     <!-- Desktop links -->
@@ -76,7 +80,13 @@ const navigate = async (link) => {
     router.push(link.to)
   }
 }
+const scrollProgress = ref(0)
 
+const onScroll = () => {
+  scrolled.value = window.scrollY > 20
+  const doc = document.documentElement
+  scrollProgress.value = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100
+}
 const onScroll = () => { scrolled.value = window.scrollY > 20 }
 onMounted(()  => window.addEventListener('scroll', onScroll))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))

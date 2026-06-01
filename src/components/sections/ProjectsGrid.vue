@@ -34,7 +34,9 @@
     <!-- Projects grid -->
     <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       <div v-for="(project, i) in filtered" :key="project._id"
-           class="card p-6 relative overflow-hidden group hover:-translate-y-1.5 transition-transform cursor-default">
+          class="card p-6 relative overflow-hidden group hover:-translate-y-1.5 transition-transform cursor-default reveal"
+          :style="`transition-delay: ${i * 60}ms`"
+          :ref="el => observeReveal(el)">
         <!-- Top gradient bar on hover -->
         <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-accent to-accent3
                     scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-400" />
@@ -90,6 +92,14 @@ const props = defineProps({
 })
 
 const activeFilter = ref('Tous')
+
+const observeReveal = (el) => {
+  if (!el) return
+  const obs = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) { el.classList.add('revealed'); obs.disconnect() }
+  }, { threshold: 0.08 })
+  obs.observe(el)
+}
 
 const categories = computed(() => {
   const cats = [...new Set(props.projects.map((p) => p.category))]
