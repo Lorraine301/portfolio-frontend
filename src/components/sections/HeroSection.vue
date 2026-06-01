@@ -20,8 +20,8 @@
         <span class="text-muted font-bold">RAHELIARISOA</span>
       </h1>
       <p class="text-muted font-light leading-relaxed mb-8 max-w-md animate-fade-up" style="animation-delay:.2s">
-         Étudiante Ingénieure en Informatique — IA, Data Engineering &amp; Développement Logiciel.
-        Passionnée par la tech qui change le monde.
+         Passionnée par la tech qui change le monde.
+         Étudiante Ingénieure en Informatique spécialisée en
       <span class="text-accent font-medium">{{ typedText }}<span class="animate-pulse">|</span></span>
       </p>
 
