@@ -87,7 +87,6 @@ const onScroll = () => {
   const doc = document.documentElement
   scrollProgress.value = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100
 }
-const onScroll = () => { scrolled.value = window.scrollY > 20 }
 onMounted(()  => window.addEventListener('scroll', onScroll))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
