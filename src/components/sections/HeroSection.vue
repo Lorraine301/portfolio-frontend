@@ -33,7 +33,7 @@
           Voir mes projets
         </router-link>
         <a href="#contact" class="btn btn-outline">Me contacter</a>
-        <a href="/CV-Lorraine.pdf" download="CV_Andriamasy_Lorraine_Agnès_RAHELIARISOA.pdf" class="btn-cv-discrete">
+        <a href="/CV-RAHELIARISOA-Andriamasy-Lorraine-Agnès.pdf" download="CV_Andriamasy_Lorraine_Agnès_RAHELIARISOA.pdf" class="btn-cv-discrete">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/>
         </svg>
