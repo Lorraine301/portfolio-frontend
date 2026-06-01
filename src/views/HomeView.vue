@@ -84,7 +84,7 @@ const stats = [
   { num: '8+',  label: 'Projets réalisés' },
   { num: '5+',  label: 'Technologies maîtrisées' },
   { num: '3',   label: 'Langues parlées' },
-  { num: '2025', label: 'En recherche de stage' },
+  { num: '2026', label: 'En recherche de stage' },
 ]
 
 const infos = [

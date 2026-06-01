@@ -13,14 +13,30 @@
 
     <div class="space-y-3">
       <div v-for="exp in store.experiences" :key="exp._id" class="card p-4 flex items-center gap-4">
-        <span class="text-2xl shrink-0">{{ typeIcon(exp.type) }}</span>
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+          :class="{ 'bg-accent/10': exp.type==='professional', 'bg-accent3/10': exp.type==='education', 'bg-accent2/10': exp.type==='association' }">
+        <svg class="w-5 h-5" :class="{ 'text-accent': exp.type==='professional', 'text-accent3': exp.type==='education', 'text-accent2': exp.type==='association' }"
+            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path v-if="exp.type==='professional'" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          <path v-else-if="exp.type==='education'" d="M12 14l9-5-9-5-9 5 9 5zm0 7V9m-7 4l7 8 7-8"/>
+          <path v-else d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+      </div>
         <div class="flex-1 min-w-0">
           <div class="font-medium truncate">{{ exp.title }}</div>
           <div class="text-xs text-muted mt-0.5">{{ exp.organization }} · {{ exp.startDate }} – {{ exp.endDate }}</div>
         </div>
         <div class="flex gap-2 shrink-0">
-          <button @click="openForm(exp)" class="btn text-xs px-3 py-1.5 border border-[var(--border)] text-muted hover:border-accent hover:text-white">✏️</button>
-          <button @click="handleDelete(exp._id)" class="btn btn-danger text-xs px-3 py-1.5">🗑️</button>
+          <button @click="openForm(exp)" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-[var(--border)] text-muted hover:border-accent hover:text-white transition-all">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+          </svg>
+        </button>
+          <button @click="handleDelete(exp._id)" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-red-500/20 text-red-400 hover:bg-red-500/10 transition-all">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+      </button>
         </div>
       </div>
     </div>

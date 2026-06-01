@@ -2,7 +2,7 @@
   <main class="min-h-screen flex items-center justify-center px-4 bg-bg">
     <div class="w-full max-w-sm">
       <div class="text-center mb-10">
-        <div class="font-syne font-extrabold text-3xl text-accent mb-2">LAR.</div>
+        <div class="font-syne font-extrabold text-3xl text-accent mb-2">LARA.</div>
         <h1 class="font-syne font-bold text-xl mb-1">Espace Admin</h1>
         <p class="text-muted text-sm">Connectez-vous pour gérer votre portfolio</p>
       </div>
