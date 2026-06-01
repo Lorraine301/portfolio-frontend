@@ -58,7 +58,7 @@
            @click.self="showForm = false">
         <div class="bg-surface border border-[var(--border)] rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto p-6">
           <h2 class="font-syne font-bold text-lg mb-6">
-            {{ editingProject ? '✏️ Modifier le projet' : '➕ Nouveau projet' }}
+            {{ editingProject ? 'Modifier le projet' : '➕ Nouveau projet' }}
           </h2>
 
           <form @submit.prevent="handleSubmit" class="flex flex-col gap-4">
