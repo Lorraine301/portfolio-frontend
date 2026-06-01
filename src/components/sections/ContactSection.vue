@@ -4,7 +4,7 @@
       <span class="section-label">Contact</span>
       <h2 class="section-title">Travaillons ensemble</h2>
       <p class="section-sub mx-auto text-center">
-        Je suis à la recherche d'un stage PFA en IA, Data Engineering ou Développement Logiciel.
+        Je suis à la recherche d'un stage PFA en IA, Data Engineering & Développement Logiciel, idéalement à l'intersection de ces trois domaines.
         N'hésitez pas à me contacter !
       </p>
 
@@ -28,7 +28,7 @@
           </svg>
           GitHub
         </a>
-        <a href="https://linkedin.com/in/Lorraine301" target="_blank" class="contact-link">
+        <a href="https://www.linkedin.com/in/andriamasy-lorraine-agn%C3%A8s-raheliarisoa-a16a21278/" target="_blank" class="contact-link">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/>
           </svg>

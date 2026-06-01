@@ -15,8 +15,7 @@
             Je suis à la recherche d'un stage PFA en IA, Data Engineering &amp; Développement Logiciel pour mettre en pratique mes connaissances.
           </p>
           <p class="text-muted leading-relaxed mb-8 reveal reveal-delay-2">
-            Passionnée par les nouvelles technologies, je m'investis dans des projets concrets allant de l'intelligence artificielle
-            au développement web full-stack, en passant par la blockchain et la cybersécurité.
+           Passionnée par les nouvelles technologies, je m'investis dans des projets concrets couvrant un large spectre : de l'intelligence artificielle et du Big Data au développement logiciel et web full-stack.
           </p>
           <div class="grid grid-cols-2 gap-4">
             <div v-for="(stat, i) in stats" :key="stat.label"
@@ -101,7 +100,7 @@ onMounted(() => {
 
 const stats = [
   { num: '8+',   label: 'Projets réalisés' },
-  { num: '5+',   label: 'Technologies maîtrisées' },
+  { num: '20+',   label: 'Technologies maîtrisées' },
   { num: '3',    label: 'Langues parlées' },
   { num: '2026', label: 'En recherche de stage' },
 ]
