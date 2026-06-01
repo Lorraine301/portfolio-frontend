@@ -52,7 +52,7 @@ const dotColor = (type) => ({
   association:  'bg-accent2   shadow-accent2',
 }[type] || 'bg-accent shadow-accent')
 
-const typeLabel = (type) => ({ professional: '💼 Professionnel', education: '🎓 Formation', association: '🤝 Associatif' }[type] || type)
+const typeLabel = (type) => ({ professional: 'Professionnel', education: 'Formation', association: 'Associatif' }[type] || type)
 const typeTag   = (type) => ({
   professional: 'bg-accent/10   text-accent',
   education:    'bg-accent3/10  text-accent3',

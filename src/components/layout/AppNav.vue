@@ -3,14 +3,14 @@
        :class="scrolled ? 'nav-scrolled' : 'nav-top'">
     <router-link to="/" class="font-syne font-extrabold text-lg text-accent tracking-tight">LARA.</router-link>
 
-    <!-- Desktop links -->
+  
     <ul class="hidden md:flex gap-10 list-none">
-      <li v-for="link in links" :key="link.to">
-        <router-link :to="link.to"
-          class="text-xs font-medium tracking-widest uppercase text-muted hover:text-white transition-colors relative group">
+     <!-- Mobile -->
+      <li v-for="link in links" :key="link.label">
+        <button @click="navigate(link)"
+          class="block w-full text-left px-8 py-3 text-sm text-muted hover:text-white hover:bg-[var(--glow)] transition-colors bg-transparent border-none cursor-pointer">
           {{ link.label }}
-          <span class="absolute -bottom-1 left-0 right-0 h-px bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-        </router-link>
+        </button>
       </li>
     </ul>
 
@@ -44,17 +44,33 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
-const scrolled  = ref(false)
-const menuOpen  = ref(false)
+const router   = useRouter()
+const route    = useRoute()
+const scrolled = ref(false)
+const menuOpen = ref(false)
 
 const links = [
-  { to: '/#about',      label: 'À propos' },
-  { to: '/#skills',     label: 'Compétences' },
-  { to: '/#experience', label: 'Expérience' },
-  { to: '/projects',    label: 'Projets' },
-  { to: '/#contact',    label: 'Contact' },
+  { to: '/',           hash: '',           label: 'À propos' },
+  { to: '/',           hash: 'skills',     label: 'Compétences' },
+  { to: '/',           hash: 'experience', label: 'Expérience' },
+  { to: '/projects',   hash: '',           label: 'Projets' },
+  { to: '/',           hash: 'contact',    label: 'Contact' },
 ]
+
+const navigate = async (link) => {
+  menuOpen.value = false
+  if (link.hash) {
+    if (route.path !== '/') {
+      await router.push('/')
+      await new Promise(r => setTimeout(r, 300))
+    }
+    document.getElementById(link.hash)?.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    router.push(link.to)
+  }
+}
 
 const onScroll = () => { scrolled.value = window.scrollY > 20 }
 onMounted(()  => window.addEventListener('scroll', onScroll))

@@ -9,7 +9,7 @@
             </svg>
           </div>
           <div>
-            <div class="font-syne font-extrabold text-white text-base leading-none">LARA.</div>
+            <div class="font-syne font-extrabold text-purple text-base leading-none">LARA.</div>
             <div class="text-[10px] text-muted mt-0.5 tracking-widest uppercase">Panel Admin</div>
           </div>
         </div>

@@ -29,10 +29,13 @@
         </div>
 
         <div class="flex flex-col gap-4">
-          <div v-for="info in infos" :key="info.title" class="card p-5">
-            <h4 class="text-accent3 text-xs font-bold tracking-widest uppercase mb-2">{{ info.title }}</h4>
-            <p class="text-muted text-sm leading-relaxed">{{ info.content }}</p>
+         <div v-for="info in infos" :key="info.title" class="card p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-accent3" v-html="info.icon"></span>
+            <h4 class="text-accent3 text-xs font-bold tracking-widest uppercase">{{ info.title }}</h4>
           </div>
+          <p class="text-muted text-sm leading-relaxed">{{ info.content }}</p>
+        </div>
         </div>
       </div>
     </section>
@@ -88,9 +91,25 @@ const stats = [
 ]
 
 const infos = [
-  { title: '🎓 Formation',        content: 'Cycle Ingénieur — Logiciels & Systèmes Intelligents · FST Tanger' },
-  { title: '🌍 Langues',          content: 'Français (natif) · Anglais (intermédiaire) · Arabe (base)' },
-  { title: '🏆 Qualités',         content: 'Rigueur · Autonomie · Gestion des priorités · Travail en équipe' },
-  { title: '🎭 Centres d\'intérêt', content: 'Basketball · Théâtre · Organisation d\'événements · Leadership associatif' },
+  { 
+    title: 'Formation', 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5zm0 7V9m-7 4l7 8 7-8"/></svg>`,
+    content: 'Cycle Ingénieur — Logiciels & Systèmes Intelligents · FST Tanger' 
+  },
+  { 
+    title: 'Langues', 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>`,
+    content: 'Français (natif) · Anglais (intermédiaire) · Arabe (base)' 
+  },
+  { 
+    title: 'Qualités', 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>`,
+    content: 'Rigueur · Autonomie · Gestion des priorités · Travail en équipe' 
+  },
+  { 
+    title: 'Centres d\'intérêt', 
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`,
+    content: 'Basketball · Théâtre · Organisation d\'événements · Leadership associatif' 
+  },
 ]
 </script>

@@ -48,12 +48,12 @@
         <div class="bg-surface border border-[var(--border)] rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
           <h2 class="font-syne font-bold text-lg mb-6">{{ editing ? 'Modifier' : 'Ajouter' }} une expérience</h2>
           <form @submit.prevent="handleSubmit" class="flex flex-col gap-4">
-            <div>
+          <div>
               <label class="form-label">Type *</label>
               <select v-model="form.type" required class="input">
-                <option value="professional">💼 Professionnel</option>
-                <option value="education">🎓 Formation</option>
-                <option value="association">🤝 Associatif</option>
+                <option value="professional">Professionnel</option>
+                <option value="education">Formation</option>
+                <option value="association">Associatif</option>
               </select>
             </div>
             <div>
