@@ -12,18 +12,31 @@
         <div>
           <p class="text-muted leading-relaxed mb-5 reveal reveal-delay-1">
             Étudiante en 2ème année du cycle ingénieur à la FST de Tanger, filière Logiciels et Systèmes Intelligents.
-            Je suis à la recherche d'un stage PFA en IA, Data Engineering &amp; Développement Logiciel pour mettre en pratique mes connaissances.
+            Je suis à la recherche d'un <span class="text-accent font-semibold">stage PFA</span> en 
+            <span class="text-accent3 font-semibold">IA</span>, 
+            <span class="text-accent3 font-semibold">Data Engineering</span> &amp; 
+            <span class="text-accent3 font-semibold">Développement Logiciel</span> 
+            pour mettre en pratique mes connaissances.
           </p>
           <p class="text-muted leading-relaxed mb-8 reveal reveal-delay-2">
            Passionnée par les nouvelles technologies, je m'investis dans des projets concrets couvrant un large spectre : de l'intelligence artificielle et du Big Data au développement logiciel et web full-stack.
           </p>
-          <div class="grid grid-cols-2 gap-4">
-            <div v-for="(stat, i) in stats" :key="stat.label"
-                 class="card p-5 hover:-translate-y-1 transition-transform reveal"
-                 :style="`transition-delay: ${i * 80}ms`">
+         <div class="grid grid-cols-2 gap-4">
+            <component
+              :is="stat.link ? 'button' : 'div'"
+              v-for="(stat, i) in stats" :key="stat.label"
+              class="card p-5 hover:-translate-y-1 transition-transform reveal text-left"
+              :class="stat.link ? 'cursor-pointer hover:border-accent/50 border border-transparent transition-colors' : ''"
+              :style="`transition-delay: ${i * 80}ms`"
+              @click="stat.link ? navigateStat(stat.link) : null">
               <div class="font-syne font-extrabold text-3xl text-accent leading-none">{{ stat.num }}</div>
-              <div class="text-muted text-xs mt-1">{{ stat.label }}</div>
-            </div>
+              <div class="text-muted text-xs mt-1 flex items-center gap-1">
+                {{ stat.label }}
+                <svg v-if="stat.link" class="w-3 h-3 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </component>
           </div>
         </div>
 
@@ -71,9 +84,11 @@ import ProjectsGrid      from '@/components/sections/ProjectsGrid.vue'
 import ContactSection    from '@/components/sections/ContactSection.vue'
 import { useProjectStore }   from '@/stores/projectStore'
 import { usePortfolioStore } from '@/stores/portfolioStore'
+import { useRouter } from 'vue-router'
 
 const projectStore   = useProjectStore()
 const portfolioStore = usePortfolioStore()
+const router = useRouter()
 
 const featuredProjects = computed(() =>
   projectStore.projects.filter((p) => p.featured).slice(0, 3)
@@ -98,13 +113,19 @@ onMounted(() => {
   }, 100)
 })
 
+const navigateStat = (link) => {
+  if (link.startsWith('#')) {
+    document.getElementById(link.slice(1))?.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    router.push(link)
+  }
+}
 const stats = [
-  { num: '8+',   label: 'Projets réalisés' },
-  { num: '20+',   label: 'Technologies maîtrisées' },
-  { num: '3',    label: 'Langues parlées' },
-  { num: '2026', label: 'En recherche de stage' },
+  { num: '8+',   label: 'Projets réalisés',        link: '/projects' },
+  { num: '20+',  label: 'Technologies maîtrisées',  link: '#skills'   },
+  { num: '3',    label: 'Langues parlées',           link: null        },
+  { num: '2026', label: 'En recherche de stage',     link: '#contact'  },
 ]
-
 const infos = [
   {
     title: 'Formation',

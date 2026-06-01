@@ -40,7 +40,10 @@
       <div class="border-t border-[var(--border)] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted">
         <span>© 2026 Andriamasy Lorraine Agnès RAHELIARISOA</span>
         <span class="font-syne font-extrabold text-accent text-base">LARA.</span>
-        <span>Tanger, Maroc 🇲🇦</span>
+        <span>Tanger, Maroc  <svg width="16" height="11" viewBox="0 0 16 11" class="inline-block mr-1.5 align-middle">
+        <rect width="16" height="11" fill="#C1272D"/>
+          <polygon points="8,2.2 8.6,4 10.5,4 9,5.1 9.6,6.9 8,5.8 6.4,6.9 7,5.1 5.5,4 7.4,4" fill="#006233"/>
+        </svg></span>
       </div>
     </div>
   </section>
