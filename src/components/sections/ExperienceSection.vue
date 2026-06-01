@@ -25,18 +25,24 @@
           </svg>
           <h3 class="font-syne font-bold text-sm tracking-widest uppercase text-accent3">Formation</h3>
         </div>
-        <div class="space-y-4">
+        <div class="relative space-y-4">
+          <div class="absolute left-[7px] top-2 bottom-0 w-px bg-gradient-to-b from-accent3 to-transparent" />
           <div v-for="(exp, i) in education" :key="exp._id"
-               class="card p-5 opacity-0 translate-y-4 transition-all duration-500"
+               class="flex gap-4 opacity-0 translate-x-[-16px] transition-all duration-500"
                :ref="el => observeItem(el, i)">
-            <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
-              {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+            <div class="shrink-0 pt-1">
+              <div class="w-3 h-3 rounded-full relative z-10 shadow-[0_0_8px] bg-accent3 shadow-accent3" />
             </div>
-            <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
-            <div class="text-accent3 text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
-            <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+            <div class="card flex-1 p-5">
+              <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
+                {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+              </div>
+              <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
+              <div class="text-accent3 text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
+              <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+            </div>
           </div>
-          <p v-if="!education.length" class="text-muted text-xs">Aucune formation renseignée.</p>
+          <p v-if="!education.length" class="text-muted text-xs pl-6">Aucune formation renseignée.</p>
         </div>
       </div>
 
@@ -48,18 +54,24 @@
           </svg>
           <h3 class="font-syne font-bold text-sm tracking-widest uppercase text-accent">Professionnel</h3>
         </div>
-        <div class="space-y-4">
+        <div class="relative space-y-4">
+          <div class="absolute left-[7px] top-2 bottom-0 w-px bg-gradient-to-b from-accent to-transparent" />
           <div v-for="(exp, i) in professional" :key="exp._id"
-               class="card p-5 opacity-0 translate-y-4 transition-all duration-500"
+               class="flex gap-4 opacity-0 translate-x-[-16px] transition-all duration-500"
                :ref="el => observeItem(el, i)">
-            <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
-              {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+            <div class="shrink-0 pt-1">
+              <div class="w-3 h-3 rounded-full relative z-10 shadow-[0_0_8px] bg-accent shadow-accent" />
             </div>
-            <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
-            <div class="text-accent text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
-            <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+            <div class="card flex-1 p-5">
+              <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
+                {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+              </div>
+              <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
+              <div class="text-accent text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
+              <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+            </div>
           </div>
-          <p v-if="!professional.length" class="text-muted text-xs">Aucune expérience renseignée.</p>
+          <p v-if="!professional.length" class="text-muted text-xs pl-6">Aucune expérience renseignée.</p>
         </div>
       </div>
 
@@ -71,18 +83,24 @@
           </svg>
           <h3 class="font-syne font-bold text-sm tracking-widest uppercase text-accent2">Associatif</h3>
         </div>
-        <div class="space-y-4">
+        <div class="relative space-y-4">
+          <div class="absolute left-[7px] top-2 bottom-0 w-px bg-gradient-to-b from-accent2 to-transparent" />
           <div v-for="(exp, i) in association" :key="exp._id"
-               class="card p-5 opacity-0 translate-y-4 transition-all duration-500"
+               class="flex gap-4 opacity-0 translate-x-[-16px] transition-all duration-500"
                :ref="el => observeItem(el, i)">
-            <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
-              {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+            <div class="shrink-0 pt-1">
+              <div class="w-3 h-3 rounded-full relative z-10 shadow-[0_0_8px] bg-accent2 shadow-accent2" />
             </div>
-            <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
-            <div class="text-accent2 text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
-            <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+            <div class="card flex-1 p-5">
+              <div class="text-accent2 text-xs font-semibold tracking-widest uppercase mb-1">
+                {{ exp.startDate }}{{ exp.endDate && exp.endDate !== exp.startDate ? ' – ' + exp.endDate : '' }}
+              </div>
+              <h4 class="font-syne font-bold text-sm mb-1">{{ exp.title }}</h4>
+              <div class="text-accent2 text-xs mb-2">{{ exp.organization }}{{ exp.location ? ' · ' + exp.location : '' }}</div>
+              <p v-if="exp.description" class="text-muted text-xs leading-relaxed">{{ exp.description }}</p>
+            </div>
           </div>
-          <p v-if="!association.length" class="text-muted text-xs">Aucune activité renseignée.</p>
+          <p v-if="!association.length" class="text-muted text-xs pl-6">Aucune activité renseignée.</p>
         </div>
       </div>
 
@@ -111,8 +129,8 @@ const observeItem = (el, i) => {
   const obs = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
       setTimeout(() => {
-        el.classList.remove('opacity-0', 'translate-y-4')
-        el.classList.add('opacity-100', 'translate-y-0')
+        el.classList.remove('opacity-0', 'translate-x-[-16px]')
+        el.classList.add('opacity-100', 'translate-x-0')
       }, i * 100)
       obs.disconnect()
     }

@@ -3,12 +3,16 @@
        :class="scrolled ? 'nav-scrolled' : 'nav-top'">
     <router-link to="/" class="font-syne font-extrabold text-lg text-accent tracking-tight">LARA.</router-link>
 
-  
-    <ul class="hidden md:flex gap-10 list-none">
-     <!-- Mobile -->
+    <!-- Desktop links -->
+    <ul class="hidden md:flex gap-10 list-none items-center">
       <li v-for="link in links" :key="link.label">
-        <button @click="navigate(link)"
-          class="block w-full text-left px-8 py-3 text-sm text-muted hover:text-white hover:bg-[var(--glow)] transition-colors bg-transparent border-none cursor-pointer">
+        <button v-if="!link.cta" @click="navigate(link)"
+          class="text-xs font-medium tracking-widest uppercase text-muted hover:text-white transition-colors relative group bg-transparent border-none cursor-pointer">
+          {{ link.label }}
+          <span class="absolute -bottom-1 left-0 right-0 h-px bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+        </button>
+        <button v-else @click="navigate(link)"
+          class="text-xs font-medium tracking-widest uppercase px-4 py-2 rounded-lg bg-accent text-white hover:bg-accent/80 transition-colors border-none cursor-pointer">
           {{ link.label }}
         </button>
       </li>
@@ -31,11 +35,12 @@
   <transition name="slide-down">
     <div v-if="menuOpen" class="fixed top-[64px] left-0 right-0 bg-surface border-b border-[var(--border)] z-40 md:hidden">
       <ul class="flex flex-col py-4">
-        <li v-for="link in links" :key="link.to">
-          <router-link :to="link.to" @click="menuOpen = false"
-            class="block px-8 py-3 text-sm text-muted hover:text-white hover:bg-[var(--glow)] transition-colors">
+        <li v-for="link in links" :key="link.label">
+          <button @click="navigate(link)"
+            class="block w-full text-left px-8 py-3 text-sm text-muted hover:text-white hover:bg-[var(--glow)] transition-colors bg-transparent border-none cursor-pointer"
+            :class="link.cta ? 'text-accent font-semibold' : ''">
             {{ link.label }}
-          </router-link>
+          </button>
         </li>
       </ul>
     </div>
@@ -52,11 +57,11 @@ const scrolled = ref(false)
 const menuOpen = ref(false)
 
 const links = [
-  { to: '/',           hash: '',           label: 'À propos' },
-  { to: '/',           hash: 'skills',     label: 'Compétences' },
-  { to: '/',           hash: 'experience', label: 'Expérience' },
-  { to: '/projects',   hash: '',           label: 'Projets' },
-  { to: '/',           hash: 'contact',    label: 'Contact' },
+  { to: '/', hash: '',           label: 'À propos',    cta: false },
+  { to: '/', hash: 'skills',     label: 'Compétences', cta: false },
+  { to: '/', hash: 'experience', label: 'Expérience',  cta: false },
+  { to: '/projects', hash: '',   label: 'Projets',     cta: false },
+  { to: '/', hash: 'contact',    label: 'Contact',     cta: true  },
 ]
 
 const navigate = async (link) => {
@@ -78,7 +83,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <style scoped>
-.nav-top     { background: transparent; border-bottom: 1px solid transparent; }
+.nav-top      { background: transparent; border-bottom: 1px solid transparent; }
 .nav-scrolled { background: rgba(10,10,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
 .slide-down-enter-active, .slide-down-leave-active { transition: all 0.25s ease; }
 .slide-down-enter-from, .slide-down-leave-to { opacity: 0; transform: translateY(-10px); }
